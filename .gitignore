@@ -1,0 +1,8 @@
+*.DS_Store
+*normalized_SDP_data.mat
+*result.mat
+*result_tunesig.mat
+*.asv
+
+data/
+img/
