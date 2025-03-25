@@ -50,7 +50,6 @@ ADMM_info.maxiter = 100e4;
 ADMM_info.tol = 1e-10;
 ADMM_info.scaleA = 0;
 ADMM_info.scaleData = 0;
-ADMM_info.rescale = false;
 ADMM_info.sigfix = input_info.if_sigfix;
 ADMM_info.rank_threshold = 1e-10;
 ADMM_info.ADMM_warmstart_iter = ADMM_info.maxiter;
@@ -67,7 +66,6 @@ dinf_list = output_info.data.dinf_list;
 relgap_list = output_info.data.relgap_list;
 Xb_rank_list = output_info.data.Xb_rank_list;
 Xb_diff_norm_next_list = output_info.data.Xb_diff_norm_next_list;
-Xb_diff_ang_triple_list = output_info.data.Xb_diff_ang_triple_list;
 
 %% plot
 options.rows = 350;
@@ -191,26 +189,6 @@ function output_info = ADMM_single(input_info)
         normX = norm(X);
         normS = norm(S);
         normyS = max([normy, normAty, normS]);
-        if ((rescale == 1 && maxfeas < 5e2 && iter > 21 && relgap < 2e-1) ...
-            || (rescale == 2 && maxfeas < 1e-2 && iter > 40 && relgap < 5e-2) ...
-            || (rescale >= 3 && max(normX/normyS, normyS/normX) > 1.2 && rem(iter, 203) == 0))
-            if ADMM_info.rescale
-                bscale2 = normX;
-                Cscale2 = normyS;
-                bscale = bscale * bscale2;
-                Cscale = Cscale * Cscale2;
-                objscale = objscale * bscale2 * Cscale2;
-                b = b / bscale2;
-                C = C / Cscale2;
-                X = X / bscale2;
-                sig = sig * (Cscale2 / bscale2);
-                fprintf('\n [rescale = %d:%4d| %2.1e, %2.1e, %2.1e, %2.1e| %2.1e %2.1e| %2.1e] \n', ...
-                    rescale, iter, normX, normy, normAty, normS, bscale, Cscale, sig);
-                rescale = rescale + 1;
-                prim_win = 0;
-                dual_win = 0;
-            end
-        end
 
         rhsy = 1/sig * b - A * (1/sig * X + S - C);
         y = chol_solve(rhsy, R, P);
@@ -307,7 +285,6 @@ function output_info = ADMM_single(input_info)
     data.pobj_list = pobj_list;
     data.dobj_list = dobj_list;
     data.Xb_diff_norm_next_list = Xb_diff_norm_next_list;
-    data.Xb_diff_ang_triple_list = Xb_diff_ang_triple_list;
     data.Xb_rank_list = Xb_rank_list;
 
     data.X_mat = smat_single(X);
