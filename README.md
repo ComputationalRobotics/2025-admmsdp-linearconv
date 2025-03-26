@@ -17,6 +17,11 @@ To change to different SDP instances, please change the `prefix1` in line 10, `a
 Other important hyper-parameters in `admmdyn.m`:
 
 - `input_info.if_save_data`: whether output information from ADMM optimization procedure will be saved or not. Default: `true`. 
-- `input_info.if_save_iteration`: whether save each iteration's $Z^{(k)}$ or not. Default: `false`. Warning: if set to `true`, it will consume large amount of disk storage for large-scale problems.
+- `input_info.if_save_iteration`: whether save each iteration's $Z^{(k)}$ or not. Default: `false`. Warning: if set to `true`, it will consume large amount of disk storage for even for small-scale problems.
 - `input_info.sig0`: fixed $\sigma$'s value in ADMM. Default: $100$. 
 - `initial_type`: use all-zero or random initial guess for $(X^{(0)}, y^{(0)}, S^{(0)})$. Default: `"rand"`. 
+- `ADMM_info.maxiter`: ADMM iteration limit. Default: $10^6$.
+- `ADMM_info.tol`: ADMM max KKT residual tolerance. Default: $10^{-10}$.
+- `ADMM_info.scaleA`: whether scale `A` in SDP data. Default: `false`.
+- `ADMM_info.scaleData`: whether scale `b` and `C` in SDP data. Default: `false`.
+
