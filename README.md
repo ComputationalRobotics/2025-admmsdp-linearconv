@@ -35,6 +35,7 @@ If you have chosen to save the output data, there will be a new `result.mat` fil
 - `Xb_diff_norm_next_list`: a list of $|| Z^{(k+1)} - Z^{(k)} ||_F$ during ADMM procedure.
 - `Xb_diff_ang_triple_list`: a list of angle between $Z^{(k+1)} - Z^{(k)}$ and $Z^{(k)} - Z^{(k-1)}$ during ADMM procedure. 
 - `Xb_rank_list`: a list of $\text{rank} (X^{k})$ during ADMM procedure. 
+- `min_sigular_val_Xb`: $\lambda_\min (|Z_\star|)$. 
 - `X_mat`, `y`, `S_mat`, `Xb_mat`: converged optimal solutions $X_\star, y_\star, S_\star, Z_\star$.
 
 We also open source the plotting files in `admmdyn_plot.m` for reader to reproduce the plots in the paper. 
