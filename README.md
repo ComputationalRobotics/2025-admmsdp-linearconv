@@ -25,3 +25,16 @@ Other important hyper-parameters in `admmdyn.m`:
 - `ADMM_info.scaleA`: whether scale `A` in SDP data. Default: `false`.
 - `ADMM_info.scaleData`: whether scale `b` and `C` in SDP data. Default: `false`.
 
+If you have chosen to save the output data, there will be a new `result.mat` file in the `./admmdyn-data` + tag name folder. Its components are: 
+
+- `pinf_list`: a list of $r_p^{(k)}$ during ADMM procedure.
+- `dinf_list`: a list of $r_d^{(k)}$ during ADMM procedure. 
+- `relgap_list`: a list of $r_g^{(k)}$ during ADMM procedure.
+- `pobj_list`: a list of $\langle C, X^{(k)} \rangle$ during ADMM procedure.
+- `dobj_list`: a list of $b^T y^{(k)}$ during ADMM procedure. 
+- `Xb_diff_norm_next_list`: a list of $|| Z^{(k+1)} - Z^{(k)} ||_F$ during ADMM procedure.
+- `Xb_diff_ang_triple_list`: a list of angle between $Z^{(k+1)} - Z^{(k)}$ and $Z^{(k)} - Z^{(k-1)}$ during ADMM procedure. 
+- `Xb_rank_list`: a list of $\text{rank} (X^{k})$ during ADMM procedure. 
+- `X_mat`, `y`, `S_mat`, `Xb_mat`: converged optimal solutions $X_\star, y_\star, S_\star, Z_\star$.
+
+We also open source the plotting files in `admmdyn_plot.m` for reader to reproduce the plots in the paper. 
