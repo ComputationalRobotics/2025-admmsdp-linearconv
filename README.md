@@ -12,4 +12,11 @@ Please directly run `admmdyn.m` in MATLAB to test `BQP/20-1` data with $\sigma =
   <img src="./admmdyn-data/BQP-r1/20-1/demo.png" width="50%">
 </p>
 
-To change to different SDP instances, please change the `prefix1` in line 10, `admmdyn.m` to other tags, such as `theta-12`. The program will automatically load `SDP_data.mat` for that tag. 
+To change to different SDP instances, please change the `prefix1` in line 10, `admmdyn.m` to other tags, such as `theta-12`. The program will automatically load `SDP_data.mat` for that tag. The tag names correspond to labels in paper's Table 1. 
+
+Other important hyper-parameters in `admmdyn.m`:
+
+- `input_info.if_save_data`: whether output information from ADMM optimization procedure will be saved or not. Default: `true`. 
+- `input_info.if_save_iteration`: whether save each iteration's $Z^{(k)}$ or not. Default: `false`. Warning: if set to `true`, it will consume large amount of disk storage for large-scale problems.
+- `input_info.sig0`: fixed $\sigma$'s value in ADMM. Default: $100$. 
+- `initial_type`: use all-zero or random initial guess for $(X^{(0)}, y^{(0)}, S^{(0)})$. Default: `"rand"`. 
