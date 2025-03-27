@@ -1,4 +1,4 @@
-## Codes and Data for the Paper *"Local Linear Convergence of the Alternating Direction Method of Multipliers for Semidefinite Programming under Strict Complementarity"*
+## Codes and Data for the Paper [*"Local Linear Convergence of the Alternating Direction Method of Multipliers for Semidefinite Programming under Strict Complementarity"*](https://arxiv.org/abs/2503.20142)
 
 ### Installation
 
